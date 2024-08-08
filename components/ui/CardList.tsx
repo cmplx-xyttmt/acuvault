@@ -17,7 +17,7 @@ export default function CardList({title, description, items}: CardListProps) {
             </CardHeader>
             <CardContent>
                 {items.map((item, index) => (
-                    <div key={index}>{item}</div>
+                    <div className="hover:text-orange-600" key={index}>{item}</div>
                 ))
                 }
             </CardContent>

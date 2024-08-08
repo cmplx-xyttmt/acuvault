@@ -24,7 +24,7 @@ export default function Navbar() {
                     >
                         <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             {menuItems.map((item, idx) => (
-                                <li key={idx} className="text-gray-600 hover:text-indigo-600">
+                                <li key={idx} className="text-gray-600 hover:text-orange-600">
                                     <Link href={item.path}>{item.title}</Link>
                                 </li>
                             ))}
