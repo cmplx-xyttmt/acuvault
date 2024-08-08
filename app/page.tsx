@@ -4,22 +4,34 @@
 import Navbar from "@/components/main-nav";
 import CreateSpace from "@/components/ui/create_space";
 import CardList from "@/components/ui/CardList";
+import {useEffect, useState} from "react";
+import {CardItemContent, Space} from "@/lib/definitions";
+import {convertSpacesToCardItems, convertStringsToCardItems, getSpacesLocalStorage} from "@/lib/utils";
 
 export default function Home() {
+    const [spaces, setSpaces] = useState<Space[]>([]);
+
+    useEffect(() => {
+        const allSpaces = getSpacesLocalStorage();
+        setSpaces(allSpaces);
+    }, []);
+
     return (
         <>
             <div className="m-8">
-                <CreateSpace/>
+                <CreateSpace
+                    setSpaces={setSpaces}
+                />
                 <div className="my-4 grid grid-cols-2 gap-2">
                     <CardList
                         title="Spaces"
                         description="Your list of spaces"
-                        items={["Algorithms", "NextJS", "Systems Programming"]}
+                        items={convertSpacesToCardItems(spaces)}
                     />
                     <CardList
                         title="Quizzes"
                         description="Your list of quizzes"
-                        items={["Number Theory Algorithms Quiz", "Server Side Rendering Quiz", "Memory Management Quiz"]}
+                        items={convertStringsToCardItems(["Number Theory Algorithms Quiz", "Server Side Rendering Quiz", "Memory Management Quiz"])}
                     />
                 </div>
             </div>

@@ -1,5 +1,3 @@
-'use client';
-
 import {
     Dialog,
     DialogContent,
@@ -10,11 +8,13 @@ import {
 } from "@/components/ui/dialog";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {z} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {saveSpaceLocalStorage} from "@/lib/utils";
+import {Space} from "@/lib/definitions";
 
 const formSchema = z.object({
     space_name: z.string().min(2).max(50),
@@ -22,7 +22,11 @@ const formSchema = z.object({
     tags: z.string().min(2).max(50)
 });
 
-export default function CreateSpace() {
+type CreateSpaceProps = {
+    setSpaces: React.Dispatch<React.SetStateAction<Space[]>>
+}
+
+export default function CreateSpace({setSpaces}: CreateSpaceProps) {
     const [isOpen, setIsOpen] = useState(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -35,9 +39,8 @@ export default function CreateSpace() {
 
     const handleSubmit = (values: z.infer<typeof formSchema>) => {
 
-        // TODO: add the new space to a list
-        console.log(values);
-
+        const spacesList = saveSpaceLocalStorage(values);
+        setSpaces(spacesList);
         setIsOpen(false);
     }
 

@@ -1,6 +1,6 @@
 export type Timestamp = {
-    created_at: string;
-    updated_at: string;
+    created_at: number;
+    updated_at: number;
 }
 
 export type User = {
@@ -8,7 +8,7 @@ export type User = {
     username: string;
     email: string;
     password: string;
-    timestamp: Timestamp;
+    timestamp: Timestamp | null;
 }
 
 export type Space = {
@@ -34,7 +34,7 @@ export type Question = {
     question_text: string;
     solution_text: string;
     tags: string[];
-    quizzes: Quiz[];
+    quizzes: Quiz[];  // maybe should be a list of quiz ids?
     author: User;
     source: string;  // Where did the question from? textbook, contest, e.t.c.
     timestamp: Timestamp;
@@ -48,4 +48,9 @@ export type UserQuizParticipation = {
     time_limit: number;
     started_at: string;
     finished_at: string;
+}
+
+export type CardItemContent = {
+    title: string,
+    description: string
 }

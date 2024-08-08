@@ -1,10 +1,12 @@
 import {Card} from "@/components/ui/card";
 import {CardContent, CardDescription, CardHeader, CardTitle} from "./card";
+import {CardItemContent, Quiz, Space} from "@/lib/definitions";
+
 
 type CardListProps = {
     title: string,
     description: string,
-    items: string[]
+    items: CardItemContent[]
 }
 
 export default function CardList({title, description, items}: CardListProps) {
@@ -17,7 +19,7 @@ export default function CardList({title, description, items}: CardListProps) {
             </CardHeader>
             <CardContent>
                 {items.map((item, index) => (
-                    <div className="hover:text-orange-600" key={index}>{item}</div>
+                    <div className="hover:text-orange-600" key={index}>{item.title}</div>
                 ))
                 }
             </CardContent>
