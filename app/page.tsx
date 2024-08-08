@@ -8,7 +8,6 @@ import CardList from "@/components/ui/CardList";
 export default function Home() {
     return (
         <>
-            <Navbar/>
             <div className="m-8">
                 <CreateSpace/>
                 <div className="my-4 grid grid-cols-2 gap-2">
