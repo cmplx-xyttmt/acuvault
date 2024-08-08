@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import {ModeToggle} from "@/components/ui/ModeToggle";
 
 const menuItems = [
     {title: "Spaces", path: "/spaces"},
@@ -10,7 +11,7 @@ const menuItems = [
 
 export default function Navbar() {
     return (
-        <nav className="bg-white w-full border-b md:border-0">
+        <nav className="w-full border-b md:border-0">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link href="/">
@@ -28,6 +29,7 @@ export default function Navbar() {
                                     <Link href={item.path}>{item.title}</Link>
                                 </li>
                             ))}
+                            <li><ModeToggle/></li>
                         </ul>
 
                     </div>
